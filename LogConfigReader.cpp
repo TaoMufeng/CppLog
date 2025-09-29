@@ -13,7 +13,7 @@ void LogConfigReader::loadConfig() {
     FileReader fileReader(configFilePath);
     Log::Instance().setLogType(fileReader.read("log_type"));
     Log::Instance().setLogLevel(fileReader.read("log_level"));
-    Log::Instance().setLogFilePath(fileReader.read("log_file_path"));
+    Log::Instance().setLogFilePath(fileReader.read("log_file"));
     Log::Instance().setMaxLogSize(fileReader.read("max_log_size"));
     Log::Instance().setFormat(fileReader.read("format"));
 }

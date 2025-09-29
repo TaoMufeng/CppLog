@@ -9,8 +9,11 @@ private:
     std::string filePath;
     std::mutex fileMutex;
     bool Write(const std::string& message);
+    void SetFilePath(const std::string& path);
 public:
-    explicit FileWriter(const std::string& path);
+    FileWriter();
+    FileWriter(const std::string& path);
     bool write(const std::string& message);
     ~FileWriter();
+    void setFilePath(const std::string& path);
 };

@@ -21,4 +21,6 @@ add_executable(Log main.cpp
         LogConsoleWriter.h
         Util.cpp
         Util.h
+        LogFileWriter.cpp
+        LogFileWriter.h
 )
