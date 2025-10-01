@@ -1,5 +1,5 @@
 #include <iostream>
-#include "LogFileWriter.h"
+#include "../include/Log/LogFileWriter.h"
 void LogFileWriter::SetLogPath(const std::string &path) {
     logFilePath = path;
     std::cout << logFilePath << std::endl;

@@ -1,6 +1,6 @@
-#include "Log.h"
-#include "Util.h"
-#include "LogFac.h"
+#include "../include/Log/Log.h"
+#include "../include/Log/Util.h"
+#include "../include/Log/LogFac.h"
 #include <iostream>
 #include <thread>
 Log &Log::Instance() {
@@ -39,7 +39,7 @@ void Log::SetLogLevel(const std::string& level) {
     } else if (level == "warning") {
         logLevel = LogLevel::WARNING;
     } else if (level == "error") {
-        logLevel = LogLevel::ERROR;
+        logLevel = LogLevel::ERR;
     } else if (level == "fatal") {
         logLevel = LogLevel::FATAL;
     } else {
@@ -68,12 +68,12 @@ void Log::LogMessage(const std::string &message, LogLevel level, const std::stri
         return;
     }
     std::string logMessage = Util::trim(format);
-    logMessage = Util::replace(logMessage, "time", Util::getCurrentTime());
-    logMessage = Util::replace(logMessage, "level", Util::logLevelToString(level));
-    logMessage = Util::replace(logMessage, "message", message);
-    logMessage = Util::replace(logMessage, "thread_id", threadId);
-    logMessage = Util::replace(logMessage, "file", file);
-    logMessage = Util::replace(logMessage, "line", std::to_string(line));
+    logMessage = Util::replace(logMessage, "{time}", Util::getCurrentTime());
+    logMessage = Util::replace(logMessage, "{level}", Util::logLevelToString(level));
+    logMessage = Util::replace(logMessage, "{message}", message);
+    logMessage = Util::replace(logMessage, "{thread_id}", threadId);
+    logMessage = Util::replace(logMessage, "{file}", file);
+    logMessage = Util::replace(logMessage, "{line}", std::to_string(line));
     auto writer = LogFac::CreateWriter(logType);
     writer->setLogPath(logFilePath);
     writer->write(logMessage);

@@ -1,5 +1,5 @@
-#include "FileReader.h"
-#include "Util.h"
+#include "../include/Log/FileReader.h"
+#include "../include/Log/Util.h"
 FileReader::FileReader(std::string filePath) {
     this->filePath = std::move(filePath);
     fileStream.open(this->filePath, std::ios::in);

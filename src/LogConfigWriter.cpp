@@ -2,7 +2,7 @@
 // Created by 吉秋羽 on 2025/10/1.
 //
 
-#include "LogConfigWriter.h"
+#include "../include/Log/LogConfigWriter.h"
 
 void LogConfigWriter::write(const Config &config) {
     std::ofstream ofs(configFilePath);

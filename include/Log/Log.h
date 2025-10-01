@@ -45,8 +45,26 @@ public:
 
     ~Log() = default;
 };
+#if defined(_WIN32)
+#include <windows.h>
+inline std::string getThreadId() {
+    return std::to_string(GetCurrentThreadId());
+}
+#elif defined(__linux__)
+#include <sys/syscall.h>
+    #include <unistd.h>
+    inline std::string getThreadId() {
+        return std::to_string(syscall(SYS_gettid));
+    }
+#else
+    #include <thread>
+    inline std::string getThreadId() {
+        static std::hash<std::thread::id> hasher;
+        return std::to_string(hasher(std::this_thread::get_id()));
+    }
+#endif
 
-#define THREAD_ID std::to_string((std::hash<std::thread::id>()(std::this_thread::get_id())))
+#define THREAD_ID getThreadId()
 #define LOG(msg, level) Log::Instance().logMessage(msg, level, THREAD_ID, __FILE__, __LINE__)
 #define LOG_DEBUG(msg) LOG(msg, LogLevel::DEBUG)
 #define LOG_INFO(msg) LOG(msg, LogLevel::INFO)

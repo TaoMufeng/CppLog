@@ -1,5 +1,5 @@
-#include "FileWriter.h"
-#include "Util.h"
+#include "../include/Log/FileWriter.h"
+#include "../include/Log/Util.h"
 FileWriter::FileWriter(const std::string &path) {
     this->filePath = path;
     fileStream.open(this->filePath, std::ios::out | std::ios::app);

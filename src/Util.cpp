@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
-#include "Util.h"
+#include "../include/Log/Util.h"
 
 
 std::string Util::GetCurrentTime() {
@@ -37,7 +37,7 @@ std::string Util::LogLevelToString(LogLevel level) {
         case LogLevel::DEBUG: return "DEBUG";
         case LogLevel::INFO: return "INFO";
         case LogLevel::WARNING: return "WARNING";
-        case LogLevel::ERROR: return "ERROR";
+        case LogLevel::ERR: return "ERROR";
         case LogLevel::FATAL: return "FATAL";
         default:
             std::cerr << "Unknown log level enum value: " << static_cast<int>(level) << std::endl;
@@ -87,7 +87,7 @@ LogLevel Util::StringToLogLevel(const std::string &str) {
     if (str == "DEBUG") return LogLevel::DEBUG;
     if (str == "INFO") return LogLevel::INFO;
     if (str == "WARNING") return LogLevel::WARNING;
-    if (str == "ERROR") return LogLevel::ERROR;
+    if (str == "ERROR") return LogLevel::ERR;
     if (str == "FATAL") return LogLevel::FATAL;
     std::cerr << "Unknown log level string: " << str << std::endl;
     return LogLevel::DEBUG;

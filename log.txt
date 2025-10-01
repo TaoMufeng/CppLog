@@ -1,1 +1,0 @@
-2025-09-30 02:58:03 | INFO | Creating log directory... | 15729502191765196471 | D:/Project/CppProject/Log/main.cpp:10

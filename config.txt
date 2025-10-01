@@ -1,5 +1,0 @@
-debug
-console
-app.log
-10MB
-time | level | message | thread_id | file:line

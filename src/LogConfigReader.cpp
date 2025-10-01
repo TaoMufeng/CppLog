@@ -1,7 +1,7 @@
 #include <iostream>
-#include "LogConfigReader.h"
-#include "FileReader.h"
-#include "Log.h"
+#include "../include/Log/LogConfigReader.h"
+#include "../include/Log/FileReader.h"
+#include "../include/Log/Log.h"
 #include <fstream>
 LogConfigReader::LogConfigReader(std::string filePath) {
     configFilePath = std::move(filePath);
