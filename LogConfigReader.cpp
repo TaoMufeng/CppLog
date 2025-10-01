@@ -2,20 +2,25 @@
 #include "LogConfigReader.h"
 #include "FileReader.h"
 #include "Log.h"
+#include <fstream>
 LogConfigReader::LogConfigReader(std::string filePath) {
     configFilePath = std::move(filePath);
     loadConfig();
 }
 
 void LogConfigReader::loadConfig() {
-    // 读取配置文件的逻辑
-    // 例如，解析日志级别、输出格式等
-    FileReader fileReader(configFilePath);
-    Log::Instance().setLogType(fileReader.read("log_type"));
-    Log::Instance().setLogLevel(fileReader.read("log_level"));
-    Log::Instance().setLogFilePath(fileReader.read("log_file"));
-    Log::Instance().setMaxLogSize(fileReader.read("max_log_size"));
-    Log::Instance().setFormat(fileReader.read("format"));
+    std::fstream fs(configFilePath, std::ios::in);
+    if (!fs.is_open()) {
+        throw std::runtime_error("Failed to open config file: " + configFilePath);
+    }
+    Config config;
+    fs >> config;
+    Log::Instance().setLogLevel(config.getlogLevel());
+    Log::Instance().setLogType(config.getlogType());
+    Log::Instance().setLogFilePath(config.getlogFilePath());
+    Log::Instance().setMaxLogSize(config.getmaxLogSize());
+    Log::Instance().setFormat(config.getformat());
+    std::cout << config << std::endl;
 }
 
 LogConfigReader::~LogConfigReader() = default;

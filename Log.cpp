@@ -72,7 +72,8 @@ void Log::LogMessage(const std::string &message, LogLevel level, const std::stri
     logMessage = Util::replace(logMessage, "level", Util::logLevelToString(level));
     logMessage = Util::replace(logMessage, "message", message);
     logMessage = Util::replace(logMessage, "thread_id", threadId);
-    logMessage = Util::replace(logMessage, "file:line", file + ":" + std::to_string(line));
+    logMessage = Util::replace(logMessage, "file", file);
+    logMessage = Util::replace(logMessage, "line", std::to_string(line));
     auto writer = LogFac::CreateWriter(logType);
     writer->setLogPath(logFilePath);
     writer->write(logMessage);

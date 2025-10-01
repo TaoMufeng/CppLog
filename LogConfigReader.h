@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "Config.h"
 
 class LogConfigReader {
 private:

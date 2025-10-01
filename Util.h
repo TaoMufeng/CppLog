@@ -10,10 +10,18 @@ private:
     static std::string LogLevelToString(LogLevel level);
     static std::string LogTypeToString(LogType type);
     static std::string Trim(std::string str);
+    static std::string Input(const std::string& prompt);
+    static LogLevel StringToLogLevel(const std::string& str);
+    static LogType StringToLogType(const std::string& str);
+    static std::string ToLower(const std::string& str);
 public:
     static std::string getCurrentTime();
     static std::string replace(std::string str, const std::string& oldstr, const std::string& newstr);
     static std::string logLevelToString(LogLevel level);
     static std::string logTypeToString(LogType type);
     static std::string trim(std::string str);
+    static std::string input(const std::string& prompt);
+    static LogLevel stringToLogLevel(const std::string& str);
+    static LogType stringToLogType(const std::string& str);
+    static std::string toLower(const std::string& str);
 };

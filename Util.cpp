@@ -2,6 +2,8 @@
 #include <sstream>
 #include <utility>
 #include <iostream>
+#include <iomanip>
+#include <algorithm>
 #include "Util.h"
 
 
@@ -68,4 +70,48 @@ std::string Util::Trim(std::string str) {
 }
 std::string Util::trim(std::string str) {
     return Trim(std::move(str));
+}
+
+std::string Util::Input(const std::string &prompt) {
+    std::string inputStr;
+    std::cout << prompt;
+    std::getline(std::cin, inputStr);
+    return inputStr;
+}
+
+std::string Util::input(const std::string &prompt) {
+    return Input(prompt);
+}
+
+LogLevel Util::StringToLogLevel(const std::string &str) {
+    if (str == "DEBUG") return LogLevel::DEBUG;
+    if (str == "INFO") return LogLevel::INFO;
+    if (str == "WARNING") return LogLevel::WARNING;
+    if (str == "ERROR") return LogLevel::ERROR;
+    if (str == "FATAL") return LogLevel::FATAL;
+    std::cerr << "Unknown log level string: " << str << std::endl;
+    return LogLevel::DEBUG;
+}
+LogLevel Util::stringToLogLevel(const std::string &str) {
+    return StringToLogLevel(str);
+}
+
+LogType Util::StringToLogType(const std::string &str) {
+    if (str == "CONSOLE") return LogType::CONSOLE;
+    if (str == "FILE") return LogType::FILE;
+    if (str == "REMOTE") return LogType::REMOTE;
+    std::cerr << "Unknown log type string: " << str << std::endl;
+    return LogType::CONSOLE;
+}
+LogType Util::stringToLogType(const std::string &str) {
+    return StringToLogType(str);
+}
+
+std::string Util::ToLower(const std::string &str) {
+    std::string lowerStr = str;
+    std::transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
+    return lowerStr;
+}
+std::string Util::toLower(const std::string &str) {
+    return ToLower(str);
 }

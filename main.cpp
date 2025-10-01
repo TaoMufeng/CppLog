@@ -3,14 +3,22 @@
 #include <iostream>
 #include "Util.h"
 #include <thread>
-int main() {
+#include "Config.h"
+#include "LogConfigWriter.h"
+#include "LogSystem.h"
 
-    try {
-        LogConfigReader configReader(R"(D:\Project\CppProject\Log\config.txt)");
-        LOG_INFO("Creating log directory...");
-    } catch (const std::exception &e) {
-        std::cerr << "Failed to create directory: " << e.what() << std::endl;
-        return 1;
-    }
+int main() {
+    // 设置日志配置文件
+    Config config;
+    config.setlogLevel("DEBUG");
+    config.setlogType("CONSOLE");
+    config.setlogFilePath("logs/app.log");
+    config.setmaxLogSize("0");
+    config.setformat("[{time}] [{level}] [{thread_id}] {message} [{file:line}]");
+    SETCONFIG("log_config.txt", config);
+    // 加载日志配置文件
+    LOADCONFIG("log_config.txt");
+    // 输出调试日志
+    LOG_DEBUG("Debug message");
     return 0;
 }

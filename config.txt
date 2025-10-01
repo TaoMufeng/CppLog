@@ -1,5 +1,5 @@
-log_type = file
-log_level = debug
-log_file = D:/Project/CppProject/Log/log.txt
-max_log_size = 10MB
-format = time | level | message | thread_id | file:line
+debug
+console
+app.log
+10MB
+time | level | message | thread_id | file:line
