@@ -1,12 +1,8 @@
-//
-// Created by 吉秋羽 on 2025/10/1.
-//
-
-#include "../include/Log/LogSystem.h"
-#include "../include/Log/Util.h"
-#include "../include/Log/LogConfigWriter.h"
-#include "../include/Log/LogConfigReader.h"
-#include "../include/Log/Log.h"
+#include "../include/Log/LogSystem.hpp"
+#include "../include/Log/Util.hpp"
+#include "../include/Log/LogConfigWriter.hpp"
+#include "../include/Log/LogConfigReader.hpp"
+#include "../include/Log/Log.hpp"
 
 void LogSystem::SetConfig(const std::string &filePath, const Config &config) {
     LogConfigWriter configWriter(filePath);

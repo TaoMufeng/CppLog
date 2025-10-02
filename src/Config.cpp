@@ -2,7 +2,7 @@
 // Created by 吉秋羽 on 2025/10/1.
 //
 
-#include "../include/Log/Config.h"
+#include "../include/Log/Config.hpp"
 
 std::ostream& operator<<(std::ostream& os, const Config& config) {
     os << "logLevel: " << config.logLevel << std::endl;

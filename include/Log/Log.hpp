@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "enum.h"
+#include "enum.hpp"
 #include <thread>
 
 class Log {
@@ -11,6 +11,8 @@ private:
     std::string logFilePath;
     std::string maxLogSize;
     std::string format;
+    std::string currentDay;
+    int fileNumber;
 
     Log();
 

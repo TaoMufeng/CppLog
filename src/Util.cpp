@@ -4,7 +4,8 @@
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
-#include "../include/Log/Util.h"
+#include <fstream>
+#include "../include/Log/Util.hpp"
 
 
 std::string Util::GetCurrentTime() {
@@ -114,4 +115,39 @@ std::string Util::ToLower(const std::string &str) {
 }
 std::string Util::toLower(const std::string &str) {
     return ToLower(str);
+}
+
+std::string Util::GetCurrentDay() {
+    auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d");
+    return ss.str();
+}
+std::string Util::getCurrentDay() {
+    return GetCurrentDay();
+}
+
+size_t Util::FileSize(const std::string &filePath) {
+    std::ifstream file(filePath, std::ios::binary | std::ios::ate);
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << filePath << std::endl;
+        return 0;
+    }
+    std::streamsize size = file.tellg();
+    file.close();
+    return static_cast<size_t>(size);
+}
+size_t Util::fileSize(const std::string &filePath) {
+    return FileSize(filePath);
+}
+
+size_t Util::ParseSize(const std::string &sizeStr) {
+    size_t size = 0;
+    std::stringstream ss(sizeStr);
+    ss >> size;
+    return size;
+}
+size_t Util::parseSize(const std::string &sizeStr) {
+    return ParseSize(sizeStr);
 }

@@ -1,14 +1,13 @@
 #include <iostream>
-#include "../include/Log/LogFileWriter.h"
+#include "../include/Log/LogFileWriter.hpp"
 void LogFileWriter::SetLogPath(const std::string &path) {
     logFilePath = path;
-    std::cout << logFilePath << std::endl;
 }
 
 void LogFileWriter::Write(const std::string &message) {
     std::lock_guard<std::mutex> lock(fileMutex);
     fileWriter.setFilePath(logFilePath);
-    std::cout << fileWriter.write(message) << std::endl;
+    fileWriter.write(message);
 }
 void LogFileWriter::setLogPath(const std::string &path) {
     SetLogPath(path);

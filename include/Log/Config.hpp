@@ -25,7 +25,6 @@ private:
     void SetlogFilePath(const std::string& path);
     void SetmaxLogSize(const std::string& size);
     void Setformat(const std::string& fmt);
-
 public:
     std::string getlogLevel() const;
     std::string getlogType() const;

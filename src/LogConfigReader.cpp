@@ -1,7 +1,6 @@
 #include <iostream>
-#include "../include/Log/LogConfigReader.h"
-#include "../include/Log/FileReader.h"
-#include "../include/Log/Log.h"
+#include "../include/Log/LogConfigReader.hpp"
+#include "../include/Log/Log.hpp"
 #include <fstream>
 LogConfigReader::LogConfigReader(std::string filePath) {
     configFilePath = std::move(filePath);
@@ -20,7 +19,6 @@ void LogConfigReader::loadConfig() {
     Log::Instance().setLogFilePath(config.getlogFilePath());
     Log::Instance().setMaxLogSize(config.getmaxLogSize());
     Log::Instance().setFormat(config.getformat());
-    std::cout << config << std::endl;
 }
 
 LogConfigReader::~LogConfigReader() = default;

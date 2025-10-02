@@ -1,8 +1,8 @@
 #pragma once
 
 #include <memory>
-#include "LogWriter.h"
-#include "enum.h"
+#include "LogWriter.hpp"
+#include "enum.hpp"
 
 class LogFac {
 

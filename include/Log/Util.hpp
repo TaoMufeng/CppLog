@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "enum.h"
+#include "enum.hpp"
 
 class Util {
 private:
@@ -14,6 +14,9 @@ private:
     static LogLevel StringToLogLevel(const std::string& str);
     static LogType StringToLogType(const std::string& str);
     static std::string ToLower(const std::string& str);
+    static std::string GetCurrentDay();
+    static size_t FileSize(const std::string& filePath);
+    static size_t ParseSize(const std::string& sizeStr);
 public:
     static std::string getCurrentTime();
     static std::string replace(std::string str, const std::string& oldstr, const std::string& newstr);
@@ -24,4 +27,7 @@ public:
     static LogLevel stringToLogLevel(const std::string& str);
     static LogType stringToLogType(const std::string& str);
     static std::string toLower(const std::string& str);
+    static std::string getCurrentDay();
+    static size_t fileSize(const std::string& filePath);
+    static size_t parseSize(const std::string& sizeStr);
 };

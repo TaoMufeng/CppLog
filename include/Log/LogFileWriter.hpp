@@ -2,13 +2,13 @@
 
 #include <mutex>
 #include <memory>
-#include "LogWriter.h"
-#include "FileWriter.h"
+#include "LogWriter.hpp"
+#include "FileWriter.hpp"
 class LogFileWriter : public LogWriter{
 private:
     std::string logFilePath;
     std::mutex fileMutex;
-    FileWriter fileWriter;
+    FileWriter<std::string> fileWriter;
     void SetLogPath(const std::string &path);
     void Write(const std::string &message);
 public:

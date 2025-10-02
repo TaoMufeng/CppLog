@@ -1,6 +1,6 @@
-#include "../include/Log/Log.h"
-#include "../include/Log/Util.h"
-#include "../include/Log/LogFac.h"
+#include "../include/Log/Log.hpp"
+#include "../include/Log/Util.hpp"
+#include "../include/Log/LogFac.hpp"
 #include <iostream>
 #include <thread>
 Log &Log::Instance() {
@@ -11,6 +11,8 @@ Log &Log::Instance() {
 Log::Log() {
     logType = LogType::CONSOLE;
     logLevel = LogLevel::DEBUG;
+    currentDay = Util::getCurrentDay();
+    fileNumber = 1;
     logFilePath = "app.log";
     maxLogSize = "10MB";
 }
@@ -67,6 +69,13 @@ void Log::LogMessage(const std::string &message, LogLevel level, const std::stri
     if (level < logLevel) {
         return;
     }
+    if (currentDay != Util::getCurrentDay()) {
+        currentDay = Util::getCurrentDay();
+        fileNumber = 1;
+    }
+    while (Util::fileSize(currentDay + "_" + std::to_string(fileNumber) + logFilePath) >= Util::parseSize(maxLogSize)) {
+        fileNumber++;
+    }
     std::string logMessage = Util::trim(format);
     logMessage = Util::replace(logMessage, "{time}", Util::getCurrentTime());
     logMessage = Util::replace(logMessage, "{level}", Util::logLevelToString(level));
@@ -75,7 +84,7 @@ void Log::LogMessage(const std::string &message, LogLevel level, const std::stri
     logMessage = Util::replace(logMessage, "{file}", file);
     logMessage = Util::replace(logMessage, "{line}", std::to_string(line));
     auto writer = LogFac::CreateWriter(logType);
-    writer->setLogPath(logFilePath);
+    writer->setLogPath(currentDay + "_" + std::to_string(fileNumber) + logFilePath);
     writer->write(logMessage);
 }
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LogWriter.h"
+#include "LogWriter.hpp"
 #include <mutex>
 class LogConsoleWriter : public LogWriter {
 private:

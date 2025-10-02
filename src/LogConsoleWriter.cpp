@@ -1,4 +1,4 @@
-#include "../include/Log/LogConsoleWriter.h"
+#include "../include/Log/LogConsoleWriter.hpp"
 #include <iostream>
 
 void LogConsoleWriter::Write(const std::string &message) {
