@@ -1,7 +1,9 @@
 #include "../include/Log/Log.hpp"
 #include "../include/Log/Util.hpp"
 #include "../include/Log/LogFac.hpp"
+#include "Log/Cache.hpp"
 #include <iostream>
+#include <mutex>
 
 Log &Log::Instance() {
     static Log instance;
@@ -66,6 +68,7 @@ void Log::setMaxLogSize(const std::string &size) {
 }
 
 void Log::LogMessage(const std::string &message, LogLevel level, const std::string& threadId, const std::string& file, int line) {
+    std::lock_guard<std::mutex> lock(mtx);
     if (level < logLevel) {
         return;
     }
@@ -81,12 +84,7 @@ void Log::LogMessage(const std::string &message, LogLevel level, const std::stri
     logMessage = Util::replace(logMessage, "{thread_id}", threadId);
     logMessage = Util::replace(logMessage, "{file}", file);
     logMessage = Util::replace(logMessage, "{line}", std::to_string(line));
-    auto writer = LogFac::CreateWriter(logType);
-    writer->setLogPath(currentDay + "_" + std::to_string(fileNumber) + logFilePath);
-    writer->write(logMessage);
-    while (Util::fileSize(currentDay + "_" + std::to_string(fileNumber) + logFilePath) >= Util::parseSize(maxLogSize)) {
-        fileNumber++;
-    }
+    Cache::Instance().addLog(logMessage, logType, logFilePath, maxLogSize, fileNumber);
 }
 
 void Log::SetFormat(const std::string &fmt) {

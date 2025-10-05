@@ -3,6 +3,7 @@
 #include <string>
 #include "enum.hpp"
 #include <thread>
+#include <mutex>
 
 #ifdef _WIN32
     #ifdef Log_EXPORTS
@@ -22,6 +23,7 @@ private:
     std::string format;
     std::string currentDay;
     int fileNumber;
+    std::mutex mtx;
 
     Log();
 
