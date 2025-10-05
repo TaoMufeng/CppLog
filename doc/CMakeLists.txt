@@ -22,3 +22,4 @@ add_library(Log SHARED
 )
 add_executable(text ../src/main.cpp)
 target_link_libraries(text Log)
+target_include_directories(Log PUBLIC ../include)

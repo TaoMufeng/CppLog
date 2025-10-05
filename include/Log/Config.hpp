@@ -3,8 +3,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "Log.hpp"
 
-class Config {
+class LOG_API Config {
 friend std::ostream& operator<<(std::ostream& os, const Config& config);
 friend std::istream& operator>>(std::istream& ifs, Config& config);
 friend std::ofstream& operator<<(std::ofstream& ofs, const Config& config);

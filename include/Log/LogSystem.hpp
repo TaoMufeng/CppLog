@@ -1,8 +1,8 @@
 #pragma once
-
+#include "Log.hpp"
 #include "Config.hpp"
 
-class LogSystem {
+class LOG_API LogSystem {
 private:
     static void SetConfig(const std::string &filePath, const Config &config);
     static void LoadConfig(const std::string& filePath);

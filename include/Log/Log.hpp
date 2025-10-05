@@ -4,7 +4,16 @@
 #include "enum.hpp"
 #include <thread>
 
-class Log {
+#ifdef _WIN32
+    #ifdef Log_EXPORTS
+        #define LOG_API __declspec(dllexport)
+    #else
+        #define LOG_API __declspec(dllimport)
+    #endif
+#else
+    #define Log_API
+#endif
+class LOG_API Log {
 private:
     LogType logType;
     LogLevel logLevel;

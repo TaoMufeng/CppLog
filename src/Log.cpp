@@ -2,7 +2,7 @@
 #include "../include/Log/Util.hpp"
 #include "../include/Log/LogFac.hpp"
 #include <iostream>
-#include <thread>
+
 Log &Log::Instance() {
     static Log instance;
     return instance;
@@ -73,9 +73,7 @@ void Log::LogMessage(const std::string &message, LogLevel level, const std::stri
         currentDay = Util::getCurrentDay();
         fileNumber = 1;
     }
-    while (Util::fileSize(currentDay + "_" + std::to_string(fileNumber) + logFilePath) >= Util::parseSize(maxLogSize)) {
-        fileNumber++;
-    }
+
     std::string logMessage = Util::trim(format);
     logMessage = Util::replace(logMessage, "{time}", Util::getCurrentTime());
     logMessage = Util::replace(logMessage, "{level}", Util::logLevelToString(level));
@@ -86,6 +84,9 @@ void Log::LogMessage(const std::string &message, LogLevel level, const std::stri
     auto writer = LogFac::CreateWriter(logType);
     writer->setLogPath(currentDay + "_" + std::to_string(fileNumber) + logFilePath);
     writer->write(logMessage);
+    while (Util::fileSize(currentDay + "_" + std::to_string(fileNumber) + logFilePath) >= Util::parseSize(maxLogSize)) {
+        fileNumber++;
+    }
 }
 
 void Log::SetFormat(const std::string &fmt) {

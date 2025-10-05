@@ -2,7 +2,6 @@
 
 #include <string>
 #include "enum.hpp"
-
 class Util {
 private:
     static std::string GetCurrentTime();
