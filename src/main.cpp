@@ -7,7 +7,7 @@
 int main() {
     Config config;
     config.setlogLevel("INFO");
-    config.setlogType("FILE");
+    config.setlogType("CONSOLE");
     config.setlogFilePath("log.txt");
     config.setmaxLogSize("1048576"); // 1 MB
     config.setformat("{time} [{level}]{thread_id} {file}:{line} {message}");
@@ -16,7 +16,7 @@ int main() {
     LOG_INFO("Application started");
     // Your application code here
     LOG_INFO("Application finished");
-    std::vector<std::thread> threads;
+   /* std::vector<std::thread> threads;
     for (int i = 0; i < 100; ++i) {
         threads.emplace_back([i]() {
 
@@ -29,6 +29,6 @@ int main() {
         t.join();
     }
 
-
+*/
     return 0;
 }

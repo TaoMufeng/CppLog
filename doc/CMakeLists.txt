@@ -20,7 +20,6 @@ add_library(Log SHARED
         ../src/LogConfigWriter.cpp
         ../src/LogSystem.cpp
         ../src/Cache.cpp
-        ../include/Log/Cache.hpp
 )
 add_executable(text ../src/main.cpp)
 target_link_libraries(text Log)

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Log/Cache.hpp"
 #include "Log/LogFac.hpp"
 #include "Log/Util.hpp"

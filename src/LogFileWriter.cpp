@@ -6,7 +6,7 @@ void LogFileWriter::SetLogPath(const std::string &path) {
 
 void LogFileWriter::Write(const std::string &message) {
     std::lock_guard<std::mutex> lock(fileMutex);
-    fileWriter.setFilePath(logFilePath);
+    fileWriter.setConfig(logFilePath, std::ios::app);
     fileWriter.write(message);
 }
 void LogFileWriter::setLogPath(const std::string &path) {

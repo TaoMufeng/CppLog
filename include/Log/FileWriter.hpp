@@ -14,22 +14,22 @@ private:
         fileStream << message << std::endl;
         return true;
     }
-    void SetFilePath(const std::string& path)
+    void SetConfig(const std::string& path, std::ios::openmode mode)
     {
         if (fileStream.is_open()) {
             fileStream.close();
         }
         filePath = path;
-        fileStream.open(filePath, std::ios::app);
+        fileStream.open(filePath, mode);
         if (!fileStream.is_open()) {
             throw std::runtime_error("Failed to open file: " + filePath);
         }
     }
 public:
     FileWriter() = default;
-    FileWriter(const std::string& path)
+    FileWriter(const std::string& path, std::ios::openmode mode = std::ios::app)
     {
-        SetFilePath(path);
+        SetConfig(path, mode);
     }
     bool write(const T &message)
     {
@@ -42,8 +42,8 @@ public:
             fileStream.close();
         }
     }
-    void setFilePath(const std::string& path)
+    void setConfig(const std::string& path, std::ios::openmode mode)
     {
-        SetFilePath(path);
+        SetConfig(path, mode);
     }
 };

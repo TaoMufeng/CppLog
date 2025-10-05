@@ -5,7 +5,7 @@
 #include "../include/Log/LogConfigWriter.hpp"
 #include "../include/Log/FileWriter.hpp"
 void LogConfigWriter::write(const Config &config) {
-    FileWriter<Config> fileWriter(configFilePath);
+    FileWriter<Config> fileWriter(configFilePath, std::ios::out);
     fileWriter.write(config);
 }
 
